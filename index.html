@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L’Oyapock Food</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    header {
+      background: linear-gradient(90deg, #16843b, #f4c400, #d71920);
+      color: white;
+      padding: 22px 16px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    header p {
+      margin: 7px 0 0;
+      font-size: 15px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      padding: 16px;
+    }
+
+    .section-title {
+      margin-top: 20px;
+      color: #16843b;
+    }
+
+    .product {
+      background: white;
+      border-radius: 14px;
+      padding: 15px;
+      margin: 12px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .product h3 {
+      margin: 0 0 5px;
+    }
+
+    .product p {
+      margin: 0;
+      color: #666;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #d71920;
+      margin-top: 7px !important;
+    }
+
+    button {
+      border: none;
+      border-radius: 10px;
+      padding: 11px 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .add {
+      background: #16843b;
+      color: white;
+    }
+
+    .cart {
+      background: white;
+      border-radius: 14px;
+      padding: 18px;
+      margin-top: 25px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .total {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    .checkout {
+      width: 100%;
+      background: #d71920;
+      color: white;
+      font-size: 17px;
+      margin-top: 15px;
+    }
+
+    .form {
+      display: none;
+      background: white;
+      border-radius: 14px;
+      padding: 18px;
+      margin-top: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 13px;
+      margin: 7px 0 12px;
+      border: 1px solid #ccc;
+      border-radius: 9px;
+      font-size: 16px;
+    }
+
+    .confirm {
+      width: 100%;
+      background: #16843b;
+      color: white;
+      font-size: 17px;
+    }
+
+    .success {
+      display: none;
+      background: #e7f7ec;
+      color: #16843b;
+      padding: 18px;
+      border-radius: 12px;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 10px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🍗 L’Oyapock Food</h1>
+  <p>Vos repas préférés à Saint-Georges-de-l’Oyapock</p>
+</header>
+
+<div class="container">
+
+  <h2 class="section-title">🍽️ Notre menu</h2>
+
+  <div class="product">
+    <div>
+      <h3>Poulet rôti</h3>
+      <p>Délicieux poulet rôti</p>
+      <p class="price">12,00 €</p>
+    </div>
+    <button class="add" onclick="addToCart('Poulet rôti', 12)">
+      Ajouter
+    </button>
+  </div>
+
+  <div class="product">
+    <div>
+      <h3>Burger</h3>
+      <p>Burger maison</p>
+      <p class="price">10,00 €</p>
+    </div>
+    <button class="add" onclick="addToCart('Burger', 10)">
+      Ajouter
+    </button>
+  </div>
+
+  <div class="product">
+    <div>
+      <h3>Sandwich</h3>
+      <p>Sandwich préparé</p>
+      <p class="price">7,00 €</p>
+    </div>
+    <button class="add" onclick="addToCart('Sandwich', 7)">
+      Ajouter
+    </button>
+  </div>
+
+  <div class="product">
+    <div>
+      <h3>Frites</h3>
+      <p>Portion de frites</p>
+      <p class="price">4,00 €</p>
+    </div>
+    <button class="add" onclick="addToCart('Frites', 4)">
+      Ajouter
+    </button>
+  </div>
+
+  <h2 class="section-title">🥤 Boissons</h2>
+
+  <div class="product">
+    <div>
+      <h3>Jus naturel</h3>
+      <p>Jus naturel frais</p>
+      <p class="price">4,00 €</p>
+    </div>
+    <button class="add" onclick="addToCart('Jus naturel', 4)">
+      Ajouter
+    </button>
+  </div>
+
+  <div class="product">
+    <div>
+      <h3>Eau</h3>
+      <p>Bouteille d’eau</p>
+      <p class="price">2,00 €</p>
+    </div>
+    <button class="add" onclick="addToCart('Eau', 2)">
+      Ajouter
+    </button>
+  </div>
+
+  <div class="product">
+    <div>
+      <h3>Soda</h3>
+      <p>Boisson fraîche</p>
+      <p class="price">3,00 €</p>
+    </div>
+    <button class="add" onclick="addToCart('Soda', 3)">
+      Ajouter
+    </button>
+  </div>
+
+  <div class="cart">
+    <h2>🛒 Votre panier</h2>
+
+    <div id="cartItems">
+      <p>Votre panier est vide.</p>
+    </div>
+
+    <div class="total">
+      Total : <span id="total">0,00 €</span>
+    </div>
+
+    <button class="checkout" onclick="showCheckout()">
+      Passer la commande
+    </button>
+  </div>
+
+  <div class="form" id="checkoutForm">
+
+    <h2>📦 Finaliser la commande</h2>
+
+    <label>Nom</label>
+    <input id="name" type="text" placeholder="Votre nom">
+
+    <label>Téléphone</label>
+    <input id="phone" type="tel" placeholder="Votre numéro">
+
+    <label>Mode de réception</label>
+    <select id="delivery" onchange="updateDelivery()">
+      <option value="delivery">Livraison — 5,00 €</option>
+      <option value="pickup">Retrait sur place — gratuit</option>
+    </select>
+
+    <label>Adresse</label>
+    <input id="address" type="text" placeholder="Votre adresse">
+
+    <label>Paiement</label>
+    <select id="payment">
+      <option value="cash">Espèces</option>
+      <option value="online">Paiement en ligne</option>
+    </select>
+
+    <button class="confirm" onclick="confirmOrder()">
+      Confirmer la commande
+    </button>
+
+  </div>
+
+  <div class="success" id="success">
+    ✅ Commande enregistrée !<br><br>
+    Merci pour votre commande chez L’Oyapock Food.
+  </div>
+
+</div>
+
+<footer>
+  L’Oyapock Food © 2026
+</footer>
+
+<script>
+  let cart = [];
+  let deliveryFee = 5;
+
+  function addToCart(name, price) {
+    cart.push({name, price});
+    updateCart();
+  }
+
+  function updateCart() {
+    const container = document.getElementById("cartItems");
+    const totalElement = document.getElementById("total");
+
+    if (cart.length === 0) {
+      container.innerHTML = "<p>Votre panier est vide.</p>";
+      totalElement.textContent = "0,00 €";
+      return;
+    }
+
+    container.innerHTML = "";
+
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      total += item.price;
+
+      const div = document.createElement("div");
+      div.className = "cart-item";
+
+      div.innerHTML = `
+        <span>${item.name} — ${item.price.toFixed(2).replace(".", ",")} €</span>
+        <button onclick="removeItem(${index})">❌</button>
+      `;
+
+      container.appendChild(div);
+    });
+
+    totalElement.textContent =
+      (total + deliveryFee).toFixed(2).replace(".", ",") + " €";
+  }
+
+  function removeItem(index) {
+    cart.splice(index, 1);
+    updateCart();
+  }
+
+  function showCheckout() {
+    if (cart.length === 0) {
+      alert("Votre panier est vide.");
+      return;
+    }
+
+    document.getElementById("checkoutForm").style.display = "block";
+
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth"
+    });
+  }
+
+  function updateDelivery() {
+    const delivery = document.getElementById("delivery").value;
+
+    if (delivery === "delivery") {
+      deliveryFee = 5;
+    } else {
+      deliveryFee = 0;
+    }
+
+    updateCart();
+  }
+
+  function confirmOrder() {
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+
+    if (!name || !phone) {
+      alert("Veuillez remplir votre nom et votre téléphone.");
+      return;
+    }
+
+    document.getElementById("success").style.display = "block";
+
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: "smooth"
+    });
+  }
+</script>
+
+</body>
+</html>
