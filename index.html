@@ -1,187 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0B6B3A">
 <title>L’Oyapock Food</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f5f5f5;color:#222}
-header{background:linear-gradient(90deg,#16843a,#f2c500,#d92727);color:#fff;padding:22px 16px;text-align:center}
-header h1{margin:0;font-size:30px}
-header p{margin:7px 0 0;font-size:15px}
-main{max-width:850px;margin:auto;padding:15px}
-.card{background:#fff;border-radius:14px;padding:16px;margin:14px 0;box-shadow:0 2px 10px #0001}
-h2{margin-top:0;color:#16843a}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
-.product{border:1px solid #ddd;border-radius:12px;padding:13px}
-.product h3{margin:0 0 7px;font-size:17px}
-.price{font-weight:bold;font-size:18px;margin:8px 0}
-button{border:0;border-radius:9px;padding:11px 14px;font-weight:bold;cursor:pointer}
-.add{background:#16843a;color:#fff;width:100%}
-.remove{background:#d92727;color:#fff}
-.choice{display:flex;gap:10px;flex-wrap:wrap}
-.choice label{border:1px solid #ccc;border-radius:9px;padding:10px;flex:1;min-width:150px}
-input,select{width:100%;padding:12px;border:1px solid #ccc;border-radius:9px;margin-top:6px;font-size:16px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.cart-line{display:flex;justify-content:space-between;gap:8px;align-items:center;border-bottom:1px solid #eee;padding:9px 0}
-.total{font-size:20px;font-weight:bold;margin-top:12px}
-.primary{background:#16843a;color:#fff;width:100%;font-size:17px}
-.whatsapp{background:#16843a;color:#fff;text-decoration:none;display:block;text-align:center;padding:13px;border-radius:9px;font-weight:bold}
-.notice{background:#fff4c7;border-left:5px solid #f2c500;padding:10px;border-radius:6px}
-.success{display:none;background:#e5f7ea;border-left:5px solid #16843a;padding:14px;border-radius:8px}
-.small{font-size:13px;color:#666}
-@media(max-width:600px){.row{grid-template-columns:1fr}}
+:root{--green:#0b6b3a;--yellow:#f4c430;--red:#d62828;--ink:#17231b;--muted:#6c7a70;--bg:#f5f7f4;--line:#e4eae5}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink)}button,input,textarea{font:inherit}button{cursor:pointer}.flag{height:5px;background:linear-gradient(90deg,var(--green) 0 33.3%,var(--yellow) 33.3% 66.6%,var(--red) 66.6%)}header{background:var(--green);color:#fff;padding:16px max(16px,calc((100% - 980px)/2));display:flex;align-items:center;gap:12px}.logo{width:48px;height:48px;border-radius:15px;background:#fff;display:grid;place-items:center;font-size:25px}.brand{font-size:21px;font-weight:900}.tagline{font-size:12px;color:#e2f1e7}.loc{font-size:11px;color:#d2e9d9;margin-top:3px}.spacer{flex:1}.carthead{border:0;background:var(--yellow);padding:10px 13px;border-radius:12px;font-weight:900;color:#203326}.wrap{max-width:980px;margin:auto;padding:18px 16px 110px}.hero{border-radius:22px;padding:25px;background:var(--green);color:#fff;margin-bottom:22px}.eyebrow{font-size:11px;color:var(--yellow);font-weight:900;letter-spacing:1.3px}.hero h1{font-size:clamp(28px,6vw,40px);margin:8px 0}.hero p{margin:0;color:#e2f1e7}.pill{display:inline-block;background:white;color:var(--green);padding:8px 12px;border-radius:30px;font-size:12px;font-weight:800;margin-top:16px}.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:10px}.sectionhead h2,.pageTitle{font-size:24px;margin:8px 0 14px}.muted{font-size:12px;color:var(--muted)}.chips{display:flex;gap:8px;margin:12px 0 16px}.chip{border:0;background:#e7ece8;color:#425248;border-radius:22px;padding:9px 17px;font-weight:750}.chip.active{background:var(--green);color:#fff}.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.product{background:#fff;border:1px solid var(--line);border-radius:17px;padding:14px;display:flex;gap:12px;align-items:center;min-width:0}.emoji{width:58px;height:58px;border-radius:14px;background:#f2f6f1;display:grid;place-items:center;font-size:31px;flex-shrink:0}.pinfo{flex:1;min-width:0}.pname{font-weight:850;font-size:14px}.desc{font-size:11px;color:#7b877e;margin-top:3px}.price{font-weight:900;color:var(--green);margin-top:6px;font-size:14px}.add{border:0;background:var(--green);color:white;width:36px;height:36px;border-radius:12px;font-size:24px;flex-shrink:0}.qty{font-size:12px;font-weight:900;color:var(--green)}.primary{width:100%;background:var(--green);border:0;color:white;padding:15px;border-radius:14px;font-weight:900;margin-top:14px}.secondary{background:#e7ece8;color:var(--green)}.view{display:none}.view.active{display:block}.back{border:0;background:transparent;color:var(--green);font-weight:850;padding:5px 0 14px}.cartline{display:flex;align-items:center;gap:12px;padding:13px;background:#fff;border:1px solid var(--line);border-radius:15px;margin-bottom:10px}.cartline .pinfo{flex:1}.stepper{display:flex;align-items:center;gap:9px}.step{border:0;width:30px;height:30px;border-radius:10px;background:#eaf2ec;color:var(--green);font-size:19px;font-weight:900}.totalbox{background:#fff;border-radius:17px;padding:16px;margin:16px 0;display:grid;gap:12px}.totalrow{display:flex;justify-content:space-between;gap:10px}.grand{font-size:17px;font-weight:900}.grand span:last-child{color:var(--green);font-size:22px}.formbox{background:white;border:1px solid var(--line);padding:16px;border-radius:17px;margin:12px 0}.fieldlabel{font-weight:850;font-size:14px;margin:12px 0 8px;display:block}.input{width:100%;border:1px solid #dce4de;border-radius:12px;padding:13px;margin-bottom:9px;background:#fff;color:var(--ink)}.options{display:flex;gap:10px}.option{flex:1;border:1px solid #dce4de;background:white;border-radius:12px;padding:12px;font-weight:800;color:#526157}.option.selected{border-color:var(--green);background:#eaf4ed;color:var(--green)}.notice{font-size:12px;line-height:1.5;color:#8b5a00;background:#fff5d6;border-radius:10px;padding:12px;margin-top:10px}.empty{text-align:center;padding:35px;background:#fff;border-radius:16px}.footer{text-align:center;color:#78847b;font-size:11px;line-height:1.6;margin-top:17px}.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:center;gap:10px;padding:9px 10px max(8px,env(safe-area-inset-bottom));z-index:2}.nav{background:transparent;border:0;min-width:90px;color:#506055;font-size:11px;font-weight:800;padding:4px}.nav>span{display:block;font-size:19px;margin-bottom:2px}.toast{position:fixed;left:50%;bottom:85px;transform:translateX(-50%);background:#17231b;color:white;padding:12px 16px;border-radius:12px;display:none;max-width:90%;z-index:5}.toast.show{display:block}@media(max-width:580px){.products{grid-template-columns:1fr}.wrap{padding-top:13px}.hero{padding:21px}.product{padding:12px}header{padding:12px 14px}.brand{font-size:19px}}
 </style>
 </head>
 <body>
+<div class="flag"></div>
 <header>
-<h1>🍗 L’Oyapock Food</h1>
-<p>Livraison à Saint-Georges-de-l’Oyapock • 20 à 40 min</p>
+  <div class="logo">🍽️</div><div><div class="brand">L’Oyapock Food</div><div class="tagline">Vos envies, livrées chez vous !</div><div class="loc">Saint-Georges-de-l’Oyapock · Guyane française</div></div>
+  <div class="spacer"></div><button class="carthead" onclick="showView('cart')">🛒 <span id="headCount">0</span></button>
 </header>
-
-<main>
-<section class="card">
-<h2>Notre menu</h2>
-<div class="products">
-<div class="product"><h3>Poulet rôti</h3><div class="price">12 €</div><button class="add" onclick="add('Poulet rôti',12)">Ajouter</button></div>
-<div class="product"><h3>Burger</h3><div class="price">10 €</div><button class="add" onclick="add('Burger',10)">Ajouter</button></div>
-<div class="product"><h3>Sandwich</h3><div class="price">8 €</div><button class="add" onclick="add('Sandwich',8)">Ajouter</button></div>
-<div class="product"><h3>Frites</h3><div class="price">4 €</div><button class="add" onclick="add('Frites',4)">Ajouter</button></div>
-<div class="product"><h3>Jus naturels</h3><div class="price">5 €</div><button class="add" onclick="add('Jus naturels',5)">Ajouter</button></div>
-<div class="product"><h3>Eau</h3><div class="price">2 €</div><button class="add" onclick="add('Eau',2)">Ajouter</button></div>
-<div class="product"><h3>Sodas</h3><div class="price">3 €</div><button class="add" onclick="add('Sodas',3)">Ajouter</button></div>
-</div>
-</section>
-
-<section class="card">
-<h2>🛒 Votre panier</h2>
-<div id="cart"><p class="small">Votre panier est vide.</p></div>
-<div id="summary"></div>
-</section>
-
-<section class="card">
-<h2>🚚 Mode de réception</h2>
-<div class="choice">
-<label><input type="radio" name="mode" value="delivery" checked onchange="updateMode()"> Livraison</label>
-<label><input type="radio" name="mode" value="pickup" onchange="updateMode()"> Retrait sur place</label>
-</div>
-<div id="addressBox">
-<label>Adresse de livraison
-<input id="address" placeholder="Votre adresse à Saint-Georges-de-l’Oyapock">
-</label>
-</div>
-</section>
-
-<section class="card">
-<h2>👤 Vos informations</h2>
-<div class="row">
-<label>Nom
-<input id="name" placeholder="Votre nom">
-</label>
-<label>Téléphone
-<input id="phone" type="tel" placeholder="Votre téléphone">
-</label>
-</div>
-</section>
-
-<section class="card">
-<h2>💳 Paiement</h2>
-<div class="choice">
-<label><input type="radio" name="payment" value="cash" checked> 💵 Espèces</label>
-<label><input type="radio" name="payment" value="online"> 💳 Paiement en ligne</label>
-</div>
-<p class="small">Le paiement en ligne doit être relié à un prestataire de paiement (Stripe, PayPal, etc.) avant d’encaisser réellement une carte bancaire.</p>
-</section>
-
-<section class="card">
-<div class="notice">⚠️ Vérifiez votre panier et vos informations avant de confirmer.</div>
-<br>
-<button class="primary" onclick="confirmOrder()">Confirmer la commande</button>
-<div id="success" class="success"></div>
-</section>
+<main class="wrap">
+  <section id="shop" class="view active">
+    <div class="hero"><div class="eyebrow">BIENVENUE CHEZ VOUS</div><h1>Un petit creux ?</h1><p>Des plats et des boissons pour vous régaler.</p><div class="pill">🛵 20–40 min · Livraison 5 €</div></div>
+    <div class="sectionhead"><h2>Notre menu</h2><span class="muted">Prix en euros</span></div>
+    <div class="chips"><button class="chip active" data-cat="Tout">Tout</button><button class="chip" data-cat="Plats">Plats</button><button class="chip" data-cat="Boissons">Boissons</button></div>
+    <div class="products" id="products"></div>
+    <button class="primary" onclick="showView('cart')">Voir mon panier (<span id="shopCount">0</span>)</button>
+    <p class="footer">Retrait sur place également disponible.</p>
+  </section>
+  <section id="cart" class="view">
+    <button class="back" onclick="showView('shop')">‹ Continuer mes achats</button><h1 class="pageTitle">Mon panier</h1>
+    <div id="cartItems"></div><div id="cartSummary"></div>
+    <button id="checkoutBtn" class="primary" onclick="showView('checkout')" style="display:none">Finaliser ma commande</button>
+  </section>
+  <section id="checkout" class="view">
+    <button class="back" onclick="showView('cart')">‹ Retour au panier</button><h1 class="pageTitle">Finaliser la commande</h1>
+    <div class="formbox"><label class="fieldlabel">Mode de réception</label><div class="options"><button class="option selected" data-service="Livraison">🛵 Livraison</button><button class="option" data-service="Retrait">🏪 Retrait</button></div>
+    <label class="fieldlabel" for="name">Vos coordonnées</label><input id="name" class="input" placeholder="Nom et prénom *" autocomplete="name"><input id="phone" class="input" placeholder="Téléphone *" type="tel" autocomplete="tel"><input id="address" class="input" placeholder="Adresse de livraison *" autocomplete="street-address"><textarea id="instructions" class="input" placeholder="Instructions (facultatif)" rows="3"></textarea>
+    <label class="fieldlabel">Mode de paiement souhaité</label><div class="options"><button class="option selected" data-payment="Espèces">💶 Espèces</button><button class="option" data-payment="En ligne">💳 En ligne</button></div><div id="onlineNotice" class="notice" hidden>Le paiement en ligne n’est pas encore activé. Aucun montant ne sera débité par cette démo.</div></div>
+    <div id="checkoutSummary" class="totalbox"></div><button class="primary" onclick="confirmOrder()">Confirmer et ouvrir WhatsApp</button><p class="footer">Votre commande sera envoyée après votre confirmation dans WhatsApp.</p>
+  </section>
 </main>
-
+<nav class="bottom"><button class="nav" onclick="showView('shop')"><span>🏠</span>Accueil</button><button class="nav" onclick="showView('cart')"><span>🛒</span>Panier (<span id="navCount">0</span>)</button><button class="nav" onclick="showView('checkout')"><span>🧾</span>Commande</button></nav>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 <script>
-let cart=[];
-let deliveryFee=5;
-const whatsapp="5521970539867";
-
-function add(name,price){
- const item=cart.find(x=>x.name===name);
- if(item)item.qty++;
- else cart.push({name,price,qty:1});
- render();
-}
-function changeQty(i,delta){
- cart[i].qty+=delta;
- if(cart[i].qty<=0)cart.splice(i,1);
- render();
-}
-function render(){
- const el=document.getElementById('cart');
- if(!cart.length){
-   el.innerHTML='<p class="small">Votre panier est vide.</p>';
- }else{
-   el.innerHTML=cart.map((x,i)=>`
-   <div class="cart-line">
-    <span>${x.name} × ${x.qty}</span>
-    <span>${(x.price*x.qty).toFixed(2)} €</span>
-    <span>
-      <button class="remove" onclick="changeQty(${i},-1)">−</button>
-      <button class="add" style="width:auto" onclick="changeQty(${i},1)">+</button>
-    </span>
-   </div>`).join('');
- }
- const subtotal=cart.reduce((s,x)=>s+x.price*x.qty,0);
- const mode=document.querySelector('input[name="mode"]:checked').value;
- const fee=mode==='delivery' && cart.length ? deliveryFee:0;
- document.getElementById('summary').innerHTML=
- `<div class="total">Sous-total : ${subtotal.toFixed(2)} €<br>
- ${mode==='delivery'?'Livraison : '+fee.toFixed(2)+' €':'Retrait : 0.00 €'}<br>
- Total : ${(subtotal+fee).toFixed(2)} €</div>`;
-}
-function updateMode(){
- const mode=document.querySelector('input[name="mode"]:checked').value;
- document.getElementById('addressBox').style.display=mode==='delivery'?'block':'none';
- render();
-}
-function confirmOrder(){
- if(!cart.length){alert('Veuillez ajouter au moins un produit au panier.');return}
- const name=document.getElementById('name').value.trim();
- const phone=document.getElementById('phone').value.trim();
- const mode=document.querySelector('input[name="mode"]:checked').value;
- const address=document.getElementById('address').value.trim();
- const payment=document.querySelector('input[name="payment"]:checked').value;
- if(!name||!phone){alert('Veuillez remplir votre nom et votre téléphone.');return}
- if(mode==='delivery'&&!address){alert('Veuillez indiquer votre adresse de livraison.');return}
-
- const subtotal=cart.reduce((s,x)=>s+x.price*x.qty,0);
- const fee=mode==='delivery'?deliveryFee:0;
- const total=subtotal+fee;
- const paymentText=payment==='cash'?'Espèces':'Paiement en ligne';
-
- let msg=`🍗 *L’Oyapock Food*%0A%0A`;
- msg+=`*Nouvelle commande*%0A`;
- msg+=`Nom : ${encodeURIComponent(name)}%0A`;
- msg+=`Téléphone : ${encodeURIComponent(phone)}%0A`;
- msg+=`Mode : ${mode==='delivery'?'Livraison':'Retrait sur place'}%0A`;
- if(mode==='delivery')msg+=`Adresse : ${encodeURIComponent(address)}%0A`;
- msg+=`Paiement : ${encodeURIComponent(paymentText)}%0A%0A`;
- msg+=`*Produits :*%0A`;
- cart.forEach(x=>msg+=`• ${encodeURIComponent(x.name)} x${x.qty} — ${(x.price*x.qty).toFixed(2)} €%0A`);
- msg+=`%0ASous-total : ${subtotal.toFixed(2)} €%0A`;
- msg+=`${mode==='delivery'?'Livraison : '+fee.toFixed(2)+' €%0A':''}`;
- msg+=`*TOTAL : ${total.toFixed(2)} €*%0A%0A`;
- msg+=`Merci !`;
-
- document.getElementById('success').style.display='block';
- document.getElementById('success').innerHTML=
- `Commande préparée. <a class="whatsapp" href="https://wa.me/${whatsapp}?text=${msg}" target="_blank">📱 Envoyer la commande sur WhatsApp</a>`;
- document.getElementById('success').scrollIntoView({behavior:'smooth'});
-}
-render();
-updateMode();
+const PRODUCTS=[
+{id:'poulet',name:'Poulet rôti',category:'Plats',price:15,emoji:'🍗',desc:'Poulet rôti savoureux'},
+{id:'burger',name:'Burger maison',category:'Plats',price:10,emoji:'🍔',desc:'Préparé à la commande'},
+{id:'sandwich',name:'Sandwich au poulet',category:'Plats',price:7,emoji:'🥪',desc:'Simple et généreux'},
+{id:'frites',name:'Frites',category:'Plats',price:4,emoji:'🍟',desc:'Dorées et croustillantes'},
+{id:'jus',name:'Jus naturel',category:'Boissons',price:3,emoji:'🧃',desc:'Frais et fruité'},
+{id:'eau',name:'Eau minérale',category:'Boissons',price:1.5,emoji:'💧',desc:'Bouteille d’eau'},
+{id:'soda',name:'Soda',category:'Boissons',price:2,emoji:'🥤',desc:'Boisson fraîche'}];
+const DELIVERY_FEE=5, WHATSAPP='5521970539867';
+const STRIPE_TEST_LINK='https://buy.stripe.com/test_8x2140e0VeJIasZgGigEg00';
+let cart={},category='Tout',service='Livraison',payment='Espèces';
+const euro=n=>n.toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
+const count=()=>Object.values(cart).reduce((a,b)=>a+b,0);
+const items=()=>PRODUCTS.filter(p=>cart[p.id]).map(p=>({...p,qty:cart[p.id]}));
+const subtotal=()=>items().reduce((s,p)=>s+p.price*p.qty,0);
+const fee=()=>service==='Livraison'&&count()?DELIVERY_FEE:0;
+const total=()=>subtotal()+fee();
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2200)}
+function renderProducts(){document.getElementById('products').innerHTML=PRODUCTS.filter(p=>category==='Tout'||p.category===category).map(p=>`<article class="product"><div class="emoji">${p.emoji}</div><div class="pinfo"><div class="pname">${p.name}</div><div class="desc">${p.desc}</div><div class="price">${euro(p.price)}</div></div><button class="add" aria-label="Ajouter ${p.name}" onclick="changeQty('${p.id}',1)">+</button>${cart[p.id]?`<span class="qty">×${cart[p.id]}</span>`:''}</article>`).join('')}
+function changeQty(id,d){cart[id]=Math.max(0,(cart[id]||0)+d);if(!cart[id])delete cart[id];renderAll();toast('Panier mis à jour')}
+function renderSummary(target){document.getElementById(target).innerHTML=`<div class="totalrow"><span class="muted">Sous-total</span><b>${euro(subtotal())}</b></div><div class="totalrow"><span class="muted">${service==='Livraison'?'Livraison':'Retrait'}</span><b>${service==='Livraison'?euro(fee()):'Gratuit'}</b></div><div class="totalrow grand"><span>Total estimé</span><span>${euro(total())}</span></div>${target==='checkoutSummary'?'<div class="muted">Délai estimé : 20 à 40 minutes pour la livraison.</div>':''}`}
+function renderCart(){const arr=items();document.getElementById('cartItems').innerHTML=arr.length?arr.map(p=>`<div class="cartline"><div class="emoji">${p.emoji}</div><div class="pinfo"><div class="pname">${p.name}</div><div class="price">${euro(p.price*p.qty)}</div></div><div class="stepper"><button class="step" onclick="changeQty('${p.id}',-1)" aria-label="Retirer un ${p.name}">−</button><b>${p.qty}</b><button class="step" onclick="changeQty('${p.id}',1)" aria-label="Ajouter un ${p.name}">+</button></div></div>`).join(''):'<div class="empty"><div style="font-size:40px">🛒</div><h3>Votre panier est vide</h3><p class="muted">Ajoutez vos produits préférés.</p><button class="primary" onclick="showView(\'shop\')">Voir le menu</button></div>';renderSummary('cartSummary');document.getElementById('checkoutBtn').style.display=arr.length?'block':'none'}
+function renderAll(){renderProducts();renderCart();renderSummary('checkoutSummary');['headCount','shopCount','navCount'].forEach(id=>document.getElementById(id).textContent=count());document.getElementById('address').hidden=service==='Retrait';document.getElementById('address').required=service==='Livraison'}
+function showView(v){if(v!=='shop'&&!count()&&v==='checkout'){toast('Ajoutez un produit avant de continuer');v='shop'}document.querySelectorAll('.view').forEach(e=>e.classList.toggle('active',e.id===v));renderAll();window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('[data-cat]').forEach(b=>b.addEventListener('click',()=>{category=b.dataset.cat;document.querySelectorAll('[data-cat]').forEach(x=>x.classList.toggle('active',x===b));renderProducts()}));
+document.querySelectorAll('[data-service]').forEach(b=>b.addEventListener('click',()=>{service=b.dataset.service;document.querySelectorAll('[data-service]').forEach(x=>x.classList.toggle('selected',x===b));renderAll()}));
+document.querySelectorAll('[data-payment]').forEach(b=>b.addEventListener('click',()=>{payment=b.dataset.payment;document.querySelectorAll('[data-payment]').forEach(x=>x.classList.toggle('selected',x===b));document.getElementById('onlineNotice').hidden=payment!=='En ligne'}));
+function confirmOrder(){if(!count()){toast('Votre panier est vide');return}const name=document.getElementById('name').value.trim(),phone=document.getElementById('phone').value.trim(),address=document.getElementById('address').value.trim(),instructions=document.getElementById('instructions').value.trim();if(!name||!phone||(service==='Livraison'&&!address)){toast(service==='Livraison'?'Nom, téléphone et adresse sont obligatoires':'Nom et téléphone sont obligatoires');return}
+const lines=items().map(p=>`• ${p.name} x${p.qty} — ${euro(p.price*p.qty)}`).join('\n');
+const message=['Bonjour L’Oyapock Food ! Je souhaite commander :','',lines,'',`Sous-total : ${euro(subtotal())}`,`Livraison : ${euro(fee())}`,`TOTAL : ${euro(total())}`,'',`Mode : ${service}`,`Nom : ${name}`,`Téléphone : ${phone}`,service==='Livraison'?`Adresse : ${address}`:'',`Paiement souhaité : ${payment}`,instructions?`Instructions : ${instructions}`:'','Merci !'].filter(Boolean).join('\n');
+if(payment==='En ligne'){ window.location.href=STRIPE_TEST_LINK; return; }
+const url=`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`;window.open(url,'_blank','noopener,noreferrer');}
+renderAll();
 </script>
 </body>
 </html>
